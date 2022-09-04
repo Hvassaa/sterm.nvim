@@ -1,0 +1,24 @@
+================================================================================
+                                                               *sterm.nvim*
+
+sterm is a (s)tupid (term)inal. It can only show and hide a neovim terminal
+buffer.
+
+
+                                                             *sterm.setup()*
+sterm.setup({opts})
+
+    Configure sterm. Only split direction can be changed for now.
+    Usage:
+    >
+	require('telescope').setup{
+	    split_direction = "horizontal" -- vertical is default
+	})
+<
+                                                              *sterm.toggle()*
+sterm.toggle()
+
+    Toggle whether the sterm-terminal is visible.
+
+
+ vim:tw=78:ts=8:ft=help:norl:
