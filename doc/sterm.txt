@@ -11,7 +11,7 @@ sterm.setup({opts})
     Configure sterm. Only split direction can be changed for now.
     Usage:
     >
-	require('telescope').setup{
+	require('sterm').setup{
 	    split_direction = "horizontal" -- vertical is default
 	})
 <
