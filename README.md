@@ -23,7 +23,7 @@ By default, sterm will make a vertical split to show the terminal. You can chang
 this by
 
 ```lua
-require('sterm').setup{
+require('sterm').setup({
 	split_direction = "horizontal" -- vertical is default
 })
 ```
