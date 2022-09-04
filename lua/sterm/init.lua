@@ -11,9 +11,12 @@ end
 local sterm_buf = -1
 
 M.toggle = function()
-	local buf_type = vim.api.nvim_buf_get_option(sterm_buf, "buftype")
+	local sterm_exists = false
 	local buf_valid = vim.api.nvim_buf_is_loaded(sterm_buf)
-	local sterm_exists = buf_type == "terminal" and buf_valid
+	if buf_valid then
+		local buf_type = vim.api.nvim_buf_get_option(sterm_buf, "buftype")
+		sterm_exists = buf_type == "terminal"
+	end
 
 	if not sterm_exists then -- no sterm buffer exists -> create it and show it
 		vim.cmd(split)
