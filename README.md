@@ -24,7 +24,7 @@ this by
 
 ```lua
 require('sterm').setup({
-	split_direction = "right" -- default
+	split_direction = "right" -- right, left, up or down
 })
 ```
 
