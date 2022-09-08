@@ -1,11 +1,24 @@
 local M = {}
 
-local split = "vsplit"
+-- commands to open the window fully sized vertically or horizontally
+local directions = {
+	left = 'exe "normal \\<C-W>H"',
+	right = 'exe "normal \\<C-W>L"',
+	up = 'exe "normal \\<C-W>K"',
+	down = 'exe "normal \\<C-W>J"',
+}
+local split_dir = directions.right
 
 M.setup = function(opts)
-	if opts.split_direction == "horizontal" then
-		split = "split"
+	local d = opts.split_direction
+	if d ~= nil then
+		split_dir = directions[d]
 	end
+end
+
+local function sterm_open()
+	vim.cmd("split")
+	vim.cmd(split_dir)
 end
 
 local sterm_buf = -1
@@ -19,7 +32,7 @@ M.toggle = function()
 	end
 
 	if not sterm_exists then -- no sterm buffer exists -> create it and show it
-		vim.cmd(split)
+		sterm_open()
 		local win = vim.api.nvim_get_current_win()
 		local buf = vim.api.nvim_create_buf(true, true)
 		vim.api.nvim_win_set_buf(win, buf)
@@ -28,7 +41,7 @@ M.toggle = function()
 	else -- sterm buffer exists
 		local win_id = vim.fn.bufwinid(vim.fn.bufname(sterm_buf))
 		if win_id == -1 then -- sterm buffer is not visible -> open new win for it
-			vim.cmd(split)
+			sterm_open()
 			local win = vim.api.nvim_get_current_win()
 			vim.api.nvim_win_set_buf(win, sterm_buf)
 		else -- sterm buffer is visible -> hide it

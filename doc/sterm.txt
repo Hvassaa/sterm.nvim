@@ -9,10 +9,11 @@ buffer.
 sterm.setup({opts})
 
     Configure sterm. Only split direction can be changed for now.
+    It can either be up, down, left or right.
     Usage:
     >
 	require('sterm').setup{
-	    split_direction = "horizontal" -- vertical is default
+	    split_direction = "right" -- default
 	})
 <
                                                               *sterm.toggle()*
