@@ -45,7 +45,10 @@ M.toggle = function()
 			local win = vim.api.nvim_get_current_win()
 			vim.api.nvim_win_set_buf(win, sterm_buf)
 		else -- sterm buffer is visible -> hide it
-			vim.api.nvim_win_hide(win_id)
+			while win_id ~= -1 do -- if there is multiple, hide them all
+				vim.api.nvim_win_hide(win_id)
+				win_id = vim.fn.bufwinid(vim.fn.bufname(sterm_buf))
+			end
 		end
 	end
 end
